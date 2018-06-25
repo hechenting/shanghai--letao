@@ -1,0 +1,14 @@
+.body_bg {
+  background-color: #222D32;
+}
+
+.panel {
+  padding: 0;
+  margin-top:150px;
+}
+
+.panel .panel-heading {
+  font-size:20px;
+  line-height: 40px;
+  /*padding: 0;*/
+}
