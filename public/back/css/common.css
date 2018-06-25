@@ -1,0 +1,146 @@
+/*样式初始化*/
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a:link,
+a:visited,
+a:hover,
+a:active {
+  text-decoration: none;
+}
+
+.red {
+  color: #A94442;
+}
+
+/*左侧侧边栏*/
+.lt_aside {
+  width: 180px;
+  height: 100%;
+  position: fixed;
+  top:0;
+  left:0;
+  z-index: 999;
+  background-color: #222D32;
+  transition:all 1s;
+}
+
+.lt_aside.hiddenmenu {
+  left:-180px;
+}
+
+.lt_aside .brand {
+  width: 180px;
+  height: 50px;
+  line-height:50px;
+  font-size: 20px;
+  background-color: #367FA9;
+  text-align: center;
+}
+.lt_aside .brand a {
+  display: block;
+  color: #fff;
+}
+
+.lt_aside .user {
+  height: 180px;
+  text-align: center;
+  font-size: 18px;
+  margin-top: 30px;
+  color: #fff;
+
+
+}
+.user img {
+  margin: 0 auto;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+
+.user p {
+  line-height:40px;
+}
+/*导航*/
+.nav li a {
+  width: 180px;
+  height: 40px;
+  line-height: 40px;
+  display: block;
+  color: #fff;
+  padding-left: 40px;
+  border-left: 3px solid transparent;
+}
+
+.nav li a.current {
+  background-color: #1D1F21;
+  border-left: 3px solid #006699;
+
+}
+
+.nav .child a {
+  padding-left: 60px;
+}
+
+.nav li i {
+  margin-right:5px;
+}
+
+/*右侧主体部分*/
+.lt_main {
+  padding-left: 180px;
+  transition:all 1s;
+}
+
+.lt_main.hiddenmenu {
+  padding-left: 0;
+}
+
+.lt_main .lt_topbar {
+  width: 100%;
+  height:50px;
+  background-color: #3C8DBC;
+  padding-left: 180px;
+  position: fixed;
+  top:0;
+  left:0;
+  transition:all 1s ;
+}
+
+.lt_topbar.hiddenmenu {
+  padding-left:0;
+}
+
+.lt_topbar a {
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  font-size: 20px;
+  color: #fff;
+  cursor:pointer;
+
+}
+
+.lt_main .container-fluid {
+  padding-top: 50px;
+}
+
+.container-fluid .breadcrumb {
+  margin-top:20px;
+
+}
+
+/*模态框*/
+
+
+
+
+
+
+
+
+
