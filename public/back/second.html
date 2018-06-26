@@ -40,7 +40,7 @@
         </div>
       </li>
       <li>
-        <a href="product.html">
+        <a href="user.html">
           <i class="glyphicon glyphicon-tags"></i><span>商品管理</span>
         </a>
       </li>
@@ -63,14 +63,38 @@
     <ol class="breadcrumb">
       <li><a href="index.html">管理系统</a></li>
       <li class="active">分类管理</li>
-      <li class="active">二级管理</li>
+      <li class="active">二级分类</li>
     </ol>
+
+    <!--添加分类按钮-->
+    <botton class="btn btn-default btn_add mb_20">添加分类</botton>
+    <div class="lt_content">
+      <table class="table table-bordered table-hover">
+        <thead>
+        <tr>
+          <th class="text-center">序号</th>
+          <th class="text-center">一级分类名称</th>
+          <th class="text-center">二级分类名称</th>
+          <th class="text-center">二级分类LOGO</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!--坑-->
+
+
+        </tbody>
+      </table>
+    </div>
+    <div class="text-right">
+      <ul id="pagination"></ul>
+    </div>
+
   </div>
 </div>
 
 <!--登出模态框-->
-<div class="modal fade" id="logout_modal>
-  <div class="modal-dialog modal-sm">
+<div class="modal fade" id="logout_modal">
+  <div class='modal-dialog modal-sm'>
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" ><span>&times;</span></button>
@@ -87,11 +111,96 @@
   </div>
 </div>
 
+<!--添加分类模态框-->
+<div class="modal fade" id="addCate_modal">
+  <div class='modal-dialog modal-sm'>
+    <form id="category">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" ><span>&times;</span></button>
+          <h4 class="modal-title">添加分类</h4>
+        </div>
+        <div class="modal-body">
+
+          <div class="form-group">
+            <div class="dropdown">
+              <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown">
+                <span id="dropDownBtn">请选择一级分类</span>
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu">
+                <!--坑2-->
+
+              </ul>
+              <input type="hidden" class="form-control" name="categoryId">
+              <!--hot固定值为1-->
+              <input type="hidden" class="form-control" name="hot" value="1">
+            </div>
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" name="brandName" placeholder="请输入二级分类名称">
+          </div>
+          <div class="form-group">
+            <label for="fileupload" class="btn btn-default mb_20">上传图片</label>
+
+            <input id="fileupload" type="file" name="pic1" data-url="/category/addSecondCategoryPic" style="display: none" >
 
 
-<script src="./lib/jquery/jquery.js"></script>
+          </div>
+          <div class="form-group">
+            <img src="./images/none.png" width="100" height="100" style="display: block" alt="">
+            <input type="hidden" class="form-control" name="brandLogo">
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+          <button type="submit" class="btn btn-primary" id='addBtn'>添加</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!--主体表格渲染模版-->
+<script type="text/template" id="tmp">
+  {{ each rows v i }}
+    <tr>
+      <td>{{ i+1+(page-1)*size }}</td>
+      <td>{{ v.categoryName }}</td>
+      <td>{{ v.brandName }}</td>
+      <td>
+        <img src="{{ v.brandLogo }}" height="50" alt="">
+      </td>
+    </tr>
+
+  {{ /each }}
+</script>
+<!--模态框下拉菜单动态渲染模版-->
+<script type="text/template" id="dropDown_tmp">
+  {{ each rows v i }}
+    <li role="presentation"><a tabindex="-1" href="#" data-id='{{ v.id }}'> {{ v.categoryName }} </a></li>
+
+  {{ /each }}
+
+</script>
+
+<script src="./lib/jquery/jquery.min.js"></script>
 <script src="./lib/bootstrap/js/bootstrap.min.js"></script>
+<!--引入表单校验插件-->
+<script src="./lib/bootstrap-validator/js/bootstrapValidator.min.js"></script>
+<!--引入upload插件,依赖jq,需注意顺序,先引入ui,后引入fileupload-->
+<script src="./lib/jquery-fileupload/jquery.ui.widget.js"></script>
+<script src="./lib/jquery-fileupload/jquery.fileupload.js"></script>
+<!--以下为upload插件为解决跨域请求问题的插件-->
+<!--<script src="./lib/jquery-fileupload/jquery.iframe-transport.js"></script>-->
+<!--引入进度条插件-->
 <script src="./lib/nprogress/nprogress.js"></script>
+<!--引入分页插件-->
+<script src="./lib/bootstrap-paginator/bootstrap-paginator.min.js"></script>
+<!--引入模版引擎插件-->
+<script src="./lib/artTemplate/template-web.js"></script>
 <script src="./js/common.js"></script>
+<script src="./js/second.js"></script>
 </body>
 </html>
