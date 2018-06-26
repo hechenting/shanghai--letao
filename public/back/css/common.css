@@ -142,7 +142,11 @@ a:active {
   background-color: pink;
 }
 
-
+/*表格*/
+.lt_content .table.table-bordered td {
+  text-align: center;
+  vertical-align: middle;
+}
 
 
 
