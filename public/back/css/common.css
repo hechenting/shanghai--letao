@@ -149,7 +149,10 @@ a:active {
 }
 
 
-
+/*分页*/
+.page_wrapper {
+  text-align: right;
+}
 
 
 

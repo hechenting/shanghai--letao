@@ -49,7 +49,7 @@ $(function() {
 
   //功能3点击登出按钮,弹出模态框
   $('.icon_logout').click(function(){
-    $('.modal').modal('show');
+    $('#logout_modal').modal('show');
   });
 
   //功能4点击退出按钮,跳转到登录页面
