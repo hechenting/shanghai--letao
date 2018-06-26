@@ -134,8 +134,13 @@ a:active {
 
 }
 
-/*模态框*/
-
+/*图表*/
+.lt_echarts .echarts_1,
+.lt_echarts .echarts_2 {
+  width: 48%;
+  height: 400px;
+  background-color: pink;
+}
 
 
 

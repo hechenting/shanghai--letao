@@ -1,37 +1,40 @@
 /**
  * Created by lenovo on 2018/6/25.
  */
-$(function() {
 
-  //功能6:未登录拦截功能
-  if(location.href.indexOf('login.html') === -1){
-    $.ajax({
-      type:'get',
-      url:'/employee/checkRootLogin',
-      dataType:'json',
-      success:function(info){
-        //console.log(info);
-        if(info.error === 400){
-          //表示未登录.需要跳转到登录页面
-          location.href='login.html';
-        }
+
+//功能6:未登录拦截功能
+if(location.href.indexOf('login.html') === -1){
+  $.ajax({
+    type:'get',
+    url:'/employee/checkRootLogin',
+    dataType:'json',
+    success:function(info){
+      //console.log(info);
+      if(info.error === 400){
+        //表示未登录.需要跳转到登录页面
+        location.href='login.html';
       }
-    })
+    }
+  })
 
-  };
+};
 
-  //功能5:进度条功能
+//功能5:进度条功能
 
-  $(document).ajaxStart(function(){
-    NProgress.start();
-  });
-  $(document).ajaxStop(function(){
-    setTimeout(function(){
-      NProgress.done();
-    },2000);
+$(document).ajaxStart(function(){
+  NProgress.start();
+});
+$(document).ajaxStop(function(){
+  setTimeout(function(){
+    NProgress.done();
+  },2000);
 
-  });
+});
 
+
+
+$(function() {
   //功能1:点击左边一级菜单,切换二级菜单
   $('.lt_aside .category').click(function () {
     $('.child').stop().slideToggle();
