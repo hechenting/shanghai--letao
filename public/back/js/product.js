@@ -122,7 +122,7 @@ $(function(){
           },
           //正则校验
           regexp: {
-            regexp: /^\+?[1-9][0-9]*$/,
+            regexp: /^\+?[1-9]\d*$/,
             message: '库存不能为0或非数字'
           }
         }
@@ -176,8 +176,8 @@ $(function(){
     }
   })
 
-  var pics=[];//用来保存每次上传的src地址,要求length为3
-  var picName =[];//用来保存图片名字
+  var pics=[];//用来保存每次上传的图片名称和地址对象,要求length为3
+  var dataStr;//用来保存图片名称和地址拼接的字符串
   //图片上传
   $("#fileupload").fileupload({
     dataType:"json",
@@ -187,22 +187,26 @@ $(function(){
       //console.log(data);
       //console.log(data.result.picAddr);
       //$('.img_box img')
-      //如果图片上传,则保存图片的名字和地址
-      pics.push(data.result.picAddr);
-      picName.push(data.result.picName);
+      //如果图片上传,则保存图片的名字和地址data.result.picAddr
+      pics.unshift(data.result);
+      $('.img_box').append('<img src='+data.result.picAddr+' width="100" height="100" >')
       //如果图片数量大于3张,则把第一张删除
       if(pics.length>3){
-        pics.shift();
-        picName.shift();
+        pics.pop();
+        $('.img_box img:last-of-type').remove();
+        dataStr = "&picName1="+pics[0].picName+"&picAddr1="+pics[0].picAddr;
+        dataStr +="&picName2="+pics[1].picName+"&picAddr2="+pics[1].picAddr;
+        dataStr +="&picName3="+pics[2].picName+"&picAddr3="+pics[2].picAddr;
+
       }
       //console.log(pics);
-      pics.forEach(function(v,i){
-        $('.img_box img:eq('+i+')').attr('src',v).css('display','inline-block');
-      });
+
       //如果图片数量等于3,则让name="statu"的input框的状态变更为校验成功
       if(pics.length===3){
         $('#product').data('bootstrapValidator').updateStatus('picStatus','VALID')
       }
+
+
     }
 
   });
@@ -214,7 +218,7 @@ $(function(){
     $.ajax({
       type:'post',
       url:'/product/addProduct',
-      data:$('#product').serialize(),
+      data:$('#product').serialize()+dataStr,
       dataType:'json',
       success:function(info){
         console.log(info);
@@ -226,9 +230,10 @@ $(function(){
           render();
           //重置表单
           $('#product').data('bootstrapValidator').resetForm(true);
-          //清空pics和picName
-          pics = [];
-          picName = [];
+          //恢复下拉菜单.删除添加的img元素
+          $('#dropDownBtn').text('请选择二级分类');
+          $('.img_box img').remove();
+
 
         }
       }
