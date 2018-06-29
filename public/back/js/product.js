@@ -25,6 +25,43 @@ $(function(){
           bootstrapMajorVersion:3,
           currentPage:currentPage,
           totalPages:Math.ceil(info.total/info.size),
+          //设置分页文字
+          itemTexts:function(type, page, current){
+            //console.log(arguments);
+            switch (type){
+              case 'page':
+                return page;
+              case 'next':
+                return '下一页';
+              case 'prev':
+                return '上一页';
+              case 'last':
+                return '尾页';
+              case 'first':
+                return '首页';
+
+            }
+
+          },
+          //设置提示
+          tooltipTitles:function(type, page, current){
+            switch (type){
+              case 'page':
+                return '前往第'+page+'页';
+              case 'next':
+                return '下一页';
+              case 'prev':
+                return '上一页';
+              case 'last':
+                return '尾页';
+              case 'first':
+                return '首页';
+
+            }
+          },
+          //使用bootstrap内置的提示组件
+          useBootstrapTooltip:true,
+
           //点击页码后的回调函数
           onPageClicked:function(a,b,c,page){
             //将当前页页码设置为点击的页码
