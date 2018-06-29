@@ -17,6 +17,7 @@
 
 .lt_content_left li.current {
   background-color: #fff;
+  border-right: none;
 }
 
 .lt_content_left li a {
@@ -44,4 +45,9 @@
   width: 70px;
   height: 50px;
   margin:0 auto;
+}
+
+/*没有更多信息提示语*/
+.nomore {
+  padding:10px;
 }
